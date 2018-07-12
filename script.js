@@ -1,68 +1,59 @@
-function subFunction()
-{
-    var nI = document.getElementById("name-input").value;
-    var aI = document.getElementById("age-input").value;
+function submit()
+    {
+    var nameInput = document.getElementById("name-input").value;
+    var ageInput = document.getElementById("age-input").value;
       
-    localStorage.setItem("nameInp",nI);
-    localStorage.setItem("ageInp", aI);
-   
-    
-}
+    localStorage.setItem("nameInp",nameInput);
+    localStorage.setItem("ageInp", ageInput);
+   }
 
 function next()
-{
-   
+    {
     nameInput= localStorage.getItem("nameInp");
     ageInput= localStorage.getItem("ageInp");
- 
-
-    
-    var ttable = document.getElementById("table-display");
-    
-    var row = ttable.insertRow(-1);
-
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    cell1.innerHTML = nameInput;
-    cell2.innerHTML = ageInput;
-    cell3.innerHTML= '<input type="button" value = "Check" onClick="checkIt()">';
+    var table = document.getElementById("table-display");
+    var row = table.insertRow(-1);
+    var coloumn1 = row.insertCell(0);
+    var coloumn2 = row.insertCell(1);
+    var coloumn3 = row.insertCell(2);
+    coloumn1.innerHTML = nameInput;
+    coloumn2.innerHTML = ageInput;
+    coloumn3.innerHTML= '<input type="button" value = "Check" onClick="checkIt()">';
    
 }  
 
 
 function checkIt()
-{   
-    
+    {   
     document.querySelector(".bg-modal").style.display ="block" ;
     
-    nameInput= localStorage.getItem("nameInp");
-    ageInput= localStorage.getItem("ageInp");
-    const vO = document.getElementById("pop-up");
-   
+    nameInput = localStorage.getItem("nameInp");
+    ageInput = localStorage.getItem("ageInp");
+    const popUp = document.getElementById("pop-up");
+    var ageVerify;
   
+    if(ageInput>=18)
+     {
+       ageVerify ="an Adult";
+     }
+
+     else
+     {
+       ageVerify="a Child";
+     }
+
+var vowelNo=0;
+var nameString =  nameInput;
+var strLength = nameString.length;
+
+for(i = 0; i<strLength ; i++)
+    {
+    if (nameString[i] == 'A'|| nameString[i] == 'a'||nameString[i] == 'E'|| nameString[i] == 'e'||nameString[i] == 'I'|| nameString[i] == 'i'||nameString[i] == 'O'|| nameString[i] == 'o'||nameString[i] == 'U'|| nameString[i] == 'u')
+    vowelNo++;
+    }
     
-    var ag;
-   if(ageInput>=18)
-   {
-       ag ="an Adult";
-   }
-
-     else{
-     ag="a Child";
-   }
-
-var vow=0;
-var str =  nameInput;
-var n=str.length;
-for(i=0;i<n;i++)
-{
-  if (str[i]=='A'|| str[i]=='a'||str[i]=='E'|| str[i]=='e'||str[i]=='I'|| str[i]=='i'||str[i]=='O'|| str[i]=='o'||str[i]=='U'|| str[i]=='u')
-  vow++;
-
-}
-var vowe="The no of vowels is "+vow+ " and he/she is " +ag;
-vO.innerHTML=vowe;
+var message="The no of vowels is "+vowelNo+ " and he/she is " +ageVerify;
+popUp.innerHTML=message;
 
 document.querySelector('.close').addEventListener('click',function(){document.querySelector(".bg-modal").style.display ="none" ;   
 });
